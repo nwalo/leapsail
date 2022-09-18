@@ -9,10 +9,6 @@
   "engines": {
     "node": "16.16.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nwalo/Modern-Jazz.git"
-  },
   "keywords": [
     "E-Learning",
     "Music",
@@ -25,9 +21,6 @@
   ],
   "author": "Nwalo Okechukwu",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nwalo/Modern-Jazz/issues"
-  },
   "homepage": "https://github.com/nwalo/leapsail#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
