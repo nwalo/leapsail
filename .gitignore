@@ -11,6 +11,8 @@
 .DS_Store
 .vscode/
 
+.env
+
 # logs
 npm-debug.log*
 yarn-debug.log*
