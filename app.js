@@ -1,3 +1,4 @@
+// Node packages
 require("dotenv").config();
 const express = require("express");
 const passport = require("passport");
@@ -6,12 +7,11 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const findOrCreate = require("mongoose-findorcreate");
 const passportLocalMongoose = require("passport-local-mongoose");
-// const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const _ = require("lodash");
-// const GridFsStorage = require("multer-gridfs-storage");
 
+// Set up express malware
 const app = express();
 app.use(express.static(path.join(__dirname + "/public")));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,15 +27,16 @@ app.use(passport.session());
 app.set("view engine", "ejs");
 
 // Database Connection - MONGODB
+// MONGO_URL is the environment variable for the mongodb atlas variable
+// mongoose.connect(process.env.MONGO_URL, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect("mongodb://localhost:27017/leapSailDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
-// mongoose.connect("mongodb://localhost:27017/leapSailDB", {
-//   useUnifiedTopology: true,
-// });
 
 // Schema Definition
 
@@ -54,9 +55,9 @@ userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("User", userSchema);
 
-passport.use(User.createStrategy());
-
 // Global Passport Serialization
+
+passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -84,7 +85,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { error: "" });
 });
 
 app.post("/login", function (req, res) {
@@ -99,8 +100,7 @@ app.post("/login", function (req, res) {
     }
     if (!user) {
       return res.render("login", {
-        errorMsg: "Invalid email address or password !",
-        title: "Login",
+        error: "Invalid email address or password !",
       });
     }
 
@@ -124,11 +124,10 @@ app.get("/logout", function (req, res) {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", { error: "" });
 });
 
 app.post("/register", function (req, res) {
-  console.log(req.body);
   User.register(
     {
       username: req.body.username,
@@ -138,7 +137,7 @@ app.post("/register", function (req, res) {
       if (err) {
         console.log("err");
         res.render("register", {
-          errorMsg: "Error ! User registration failed.",
+          error: "Error ! User registration failed.",
           title: "Register",
         });
       } else {
@@ -165,19 +164,16 @@ app.post("/register", function (req, res) {
 
                 passport.authenticate("local", function (err, user, info) {
                   if (err) {
-                    console.log(err);
                     res.redirect("/register");
                   }
                   if (!user) {
                     return res.render("login", {
-                      errorMsg: "Invalid username or password !",
-                      title: "Login",
+                      error: "Invalid username or password !",
                     });
                   }
 
                   req.logIn(user, function (err) {
                     if (err) {
-                      console.log(err);
                     } else {
                       res.redirect("/");
                     }
@@ -186,13 +182,13 @@ app.post("/register", function (req, res) {
               }
             }
           );
-          // res.redirect('/login');
         });
       }
     }
   );
 });
 
+// Declaration of the port whether in deployment or local
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = "4000";

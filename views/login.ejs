@@ -50,13 +50,16 @@
                   <div class="m-sm-4">
                     <div class="text-center">
                       <img
-                        src="img/avatars/avatar.jpg"
+                        src="/img/photos/Leapsail.jpg"
                         alt="Charles Hall"
                         class="img-fluid rounded-circle"
                         width="132"
                         height="132"
                       />
                     </div>
+                    <p class="text-danger" style="text-align: center">
+                      <%= error %>
+                    </p>
                     <form action="/login" method="post">
                       <div class="mb-3">
                         <label class="form-label">Email</label>
@@ -65,6 +68,7 @@
                           type="email"
                           name="username"
                           placeholder="Enter your email"
+                          required
                         />
                       </div>
                       <div class="mb-3">
@@ -74,6 +78,7 @@
                           type="password"
                           name="password"
                           placeholder="Enter your password"
+                          required
                         />
                         <div
                           style="
@@ -92,7 +97,7 @@
                         </div>
                       </div>
                       <div>
-                        <label class="form-check">
+                        <!-- <label class="form-check">
                           <input
                             class="form-check-input"
                             type="checkbox"
@@ -103,7 +108,7 @@
                           <span class="form-check-label">
                             Remember me next time
                           </span>
-                        </label>
+                        </label> -->
                       </div>
                       <div class="text-center mt-3">
                         <!-- <a href="index.html" class="btn btn-lg btn-primary"

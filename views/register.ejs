@@ -43,14 +43,16 @@
               <div class="text-center mt-4">
                 <h1 class="h2">Get started</h1>
                 <p class="lead">
-                  Start creating the best possible user experience for you
-                  customers.
+                  Start creating the best travel experience for you customers.
                 </p>
               </div>
 
               <div class="card">
                 <div class="card-body">
                   <div class="m-sm-4">
+                    <p class="text-danger" style="text-align: center">
+                      <%= error %>
+                    </p>
                     <form
                       action="/register"
                       method="post"
@@ -64,6 +66,7 @@
                           type="text"
                           name="fname"
                           placeholder="Enter your first name"
+                          required
                         />
                       </div>
                       <div class="mb-3">
@@ -73,6 +76,7 @@
                           type="text"
                           name="lname"
                           placeholder="Enter your last name"
+                          required
                         />
                       </div>
                       <div class="mb-3">
@@ -81,6 +85,7 @@
                           class="form-control form-control-lg"
                           name="role"
                           id="role"
+                          required
                         >
                           <option value="">Choose ...</option>
                           <option value="Superuser">Superuser</option>
@@ -104,6 +109,7 @@
                           name="username"
                           placeholder="Enter your email"
                           autocomplete="email"
+                          required
                         />
                       </div>
                       <div class="mb-3">
@@ -114,6 +120,7 @@
                           name="password"
                           placeholder="Enter password"
                           autocomplete="new-password"
+                          required
                         />
                       </div>
                       <div class="mb-3">
