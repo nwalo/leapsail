@@ -6005,7 +6005,7 @@ fieldset:disabled .btn {
 }
 .text-warning {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+  color: rgba(252, 185, 44) !important;
 }
 .text-danger {
   --bs-text-opacity: 1;
@@ -6077,10 +6077,7 @@ fieldset:disabled .btn {
 }
 .bg-warning {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-warning-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: rgba(252, 185, 44) !important;
 }
 .bg-danger {
   --bs-bg-opacity: 1;
